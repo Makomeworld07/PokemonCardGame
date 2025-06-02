@@ -3,12 +3,12 @@ import java.util.Scanner;
 import ecs100.*;
 
 /**
+ * Code has been taken from my book manager code
  * Holds a collection of pokemon cards in a hashmap
  * Allows a user to add, find, print all from a menu
  * Prevents user from adding a duplicate
  * 
- * @author WGT
- * @version (a version number or a date)
+ * @author Korrimako
  */
 public class Cards {
     // instance variables
@@ -137,6 +137,7 @@ public class Cards {
         for (int cardId: pokeBall.keySet()) {
             if (pokeBall.get(cardId).getName().toLowerCase().equals(name)) {
                 currCard = pokeBall.get(cardId); // Set the current pokemon card
+                pokeBall.get(cardId).displayCard(); // Shows card cover
                 return true;
             } else {
                 currCard = null;
