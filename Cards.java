@@ -26,8 +26,8 @@ public class Cards {
         pokeBall = new HashMap<Integer, Card>(); // Initiliase hashmap
         
         // Creating Cards
-        Card c1 = new Card(1, "Pikachu", 3, 1);
-        Card c2 = new Card(2, "Diglett", 2, 2);
+        Card c1 = new Card(1, "Pikachu", 3, 1, "pikachu.png");
+        Card c2 = new Card(2, "Diglett", 2, 2, "diglett.png");
         
         // Add cards to collection/hashmap
         pokeBall.put(1, c1); 
@@ -61,7 +61,7 @@ public class Cards {
         this.setCardId();
         this.pokeBall.put(this.currCardId, new Card(this.currCardId, name, value, qty, img));
     }
-
+    
     /**
      * Add card to collection
      */
@@ -145,25 +145,45 @@ public class Cards {
         }
         return false;
     }
-        
+    
+    /**
+     * Find card based on name 
+     * If found will display details
+     */
     public void findCard() {
-        String cardName = UI.askString("Name of Books: ");
+        String cardName = UI.askString("Name of Pokemon Card: ");
         if (this.findCard(cardName.toLowerCase().trim())) {
-            UI.println("Found Book!");
+            UI.println("Pokemon has been found");
             currCard = this.getCard();
             currCard.displayCard();
-            UI.println("Quantity: " + currCard.getQuantity());
+            UI.println(" Value: $" + currCard.getValue());
         } else {
-            UI.println("That book does not exist!");
+            UI.println(" Pokemon isn't here");
         }
     }
-
+    
+    /**
+     * Prints all cards out in a row
+     * Value/$ is printed underneath
+     */
     public void printAllCards() {
-        for (int cardId : this.pokeBall.keySet()) {
-            UI.println(cardId + " Details: ");
-            UI.println(this.pokeBall.get(cardId).getName() + " "
-                     + this.pokeBall.get(cardId).getQuantity() + " "
-                     + this.pokeBall.get(cardId).getValue());
+        int x = 50; 
+        int y = 100;
+        int spacing = 120; // space between each card
+    
+        for (Card card : this.pokeBall.values()) {
+            UI.drawImage(card.getImage(), x, y, 100, 100);
+            UI.drawString(card.getName(), x, y + 110);
+            UI.drawString("Value :$" + card.getValue(), x, y + 120); // prints value 
+            x += spacing; // space increases by each card
         }
     }
-}
+    
+    /**
+         * Hides pokemon card picture and value $
+         */
+        public void hideCards() {
+            UI.clearText();
+            UI.clearGraphics();
+        }
+    }

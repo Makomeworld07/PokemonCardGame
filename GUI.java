@@ -26,6 +26,7 @@ public class GUI
         UI.addButton("Print All", cards::printAllCards);
         UI.addButton("Add", cards::addCard);
         UI.addButton("Find", cards::findCard);
+        UI.addButton("Hide",cards::hideCards);
         UI.addButton("Quit", UI::quit);
         //Set up mouse
         //UI.setMouseListener(this::doMouse);
@@ -55,6 +56,6 @@ public class GUI
         new GUI();
     }
     
-}
+    }
 
 
